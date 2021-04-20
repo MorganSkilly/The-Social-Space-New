@@ -7,10 +7,12 @@ using Mirror;
 
 public class FPSController : NetworkBehaviour
 {
-
     [SerializeField]
     public float walkSpeed = 3.0f;
-    
+
+    [SerializeField]
+    public GameObject characterModel;
+
     [SerializeField]
     public float runSpeed = 6.0f;
 
@@ -81,6 +83,8 @@ public class FPSController : NetworkBehaviour
         sceneScript.playerScript = this;
         Camera.main.transform.SetParent(transform);
         Camera.main.transform.localPosition = new Vector3(0, 0, 0);
+
+        characterModel.SetActive(false);
     }
 
     // Start is called before the first frame update
