@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using QuickStart;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using Mirror;
 
-public class FPSController : MonoBehaviour
+public class FPSController : NetworkBehaviour
 {
 
     [SerializeField]
@@ -57,6 +59,29 @@ public class FPSController : MonoBehaviour
     private bool jumping;
     private float lastGrounedTime;
 
+    private SceneScript sceneScript;
+
+    void Awake()
+    {
+        //allow all players to run this
+        sceneScript = GameObject.FindObjectOfType<SceneScript>();
+    }
+
+    [Command]
+    public void CmdSendPlayerMessage()
+    {
+        if (sceneScript)
+        {
+            sceneScript.statusText = sceneScript.canvasInputText.text;
+            sceneScript.cinemaController.YoutubeTest(sceneScript.statusText);
+        }
+    }
+    public override void OnStartLocalPlayer()
+    {
+        sceneScript.playerScript = this;
+        Camera.main.transform.SetParent(transform);
+        Camera.main.transform.localPosition = new Vector3(0, 0, 0);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +104,8 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) { return; }
+
         Movement();
 
         MouseInput();

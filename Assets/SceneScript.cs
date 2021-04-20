@@ -10,7 +10,7 @@ namespace QuickStart
     {
         public Text canvasStatusText;
         public InputField canvasInputText;
-        public PlayerScript playerScript;
+        public FPSController playerScript;
         public VideoController cinemaController;
 
         [SyncVar(hook = nameof(OnStatusTextChanged))]

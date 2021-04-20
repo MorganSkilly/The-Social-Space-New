@@ -24,7 +24,7 @@ namespace QuickStart
         }
         public override void OnStartLocalPlayer()
         {
-            sceneScript.playerScript = this;
+            //sceneScript.playerScript = this;
             Camera.main.transform.SetParent(transform);
             Camera.main.transform.localPosition = new Vector3(0, 0, 0);
         }
