@@ -11,6 +11,7 @@ public class WelcomeUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen2.SetActive(true);
         Screen2.SetActive(false);
         Transition.SetActive(false);
     }
