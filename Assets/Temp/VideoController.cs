@@ -20,6 +20,7 @@ public class VideoController : NetworkBehaviour
 
     [SerializeField]
     public VideoPlayer cinemaScreen;
+
     [SerializeField]
     public VideoPlayer audioScreen;
 

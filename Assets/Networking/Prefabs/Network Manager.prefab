@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6754248553879797664}
   - component: {fileID: 4556391001974699912}
+  - component: {fileID: 7672281192625118721}
   - component: {fileID: 4039667673505267334}
   - component: {fileID: 8276483101379956963}
   - component: {fileID: 7587932445329526586}
@@ -55,15 +56,42 @@ MonoBehaviour:
   onlineScene: Assets/Scenes/Mirror.unity
   transport: {fileID: 4039667673505267334}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 50
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5766307033886321050, guid: d9c2c480dfea96c448d52961b36fa483,
+  playerPrefab: {fileID: 6111356595636664680, guid: 940904d3f6bf6874182081846cb9e4fd,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
+--- !u!114 &7672281192625118721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011141548758001465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 7778
+  maxMessageSize: 16384
+  handshakeMaxSize: 3000
+  noDelay: 1
+  sendTimeout: 5000
+  receiveTimeout: 20000
+  serverMaxMessagesPerTick: 10000
+  clientMaxMessagesPerTick: 1000
+  batchSend: 1
+  waitBeforeSend: 0
+  clientUseWss: 0
+  sslEnabled: 0
+  sslCertJson: ./cert.json
+  sslProtocols: 3072
+  _logLevels: 0
 --- !u!114 &4039667673505267334
 MonoBehaviour:
   m_ObjectHideFlags: 0
