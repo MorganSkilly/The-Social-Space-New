@@ -27,6 +27,9 @@ public class CharacterSelection : MonoBehaviour
         buttons[selectedCharacter].image.sprite = unselectedImage;
         buttons[selectedCharacter].image.color = unselectedColor;
 
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+
         selectedCharacter = buttonNum;
 
         // change 3d model being shown
