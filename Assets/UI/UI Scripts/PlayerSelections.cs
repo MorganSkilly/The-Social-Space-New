@@ -50,6 +50,8 @@ public class PlayerSelections : MonoBehaviour
         displayName = inputName.text;
         playerCharacter = CharacterSelection.selectedCharacter;
 
+
+
     }
     
     // Update is called once per frame
