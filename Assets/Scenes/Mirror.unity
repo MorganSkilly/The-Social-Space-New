@@ -938,6 +938,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2539032634204471106, guid: ec1c84bfba8548346b66d080d617afc7,
+        type: 3}
+      propertyPath: ipAddress
+      value: 92.233.0.144
+      objectReference: {fileID: 0}
     - target: {fileID: 4475108463612910698, guid: ec1c84bfba8548346b66d080d617afc7,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7241,7 +7246,7 @@ PrefabInstance:
     - target: {fileID: 7587932445329526586, guid: 4b06b90d76af1774f85437e9a400002b,
         type: 3}
       propertyPath: showGUI
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7672281192625118721, guid: 4b06b90d76af1774f85437e9a400002b,
         type: 3}
@@ -7252,6 +7257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Network Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011141548758001465, guid: 4b06b90d76af1774f85437e9a400002b,
+        type: 3}
+      propertyPath: m_TagString
+      value: NetworkManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b06b90d76af1774f85437e9a400002b, type: 3}

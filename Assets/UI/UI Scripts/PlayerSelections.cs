@@ -16,16 +16,18 @@ public class PlayerSelections : MonoBehaviour
     public int playerCharacter;
     public string ipAddress;
 
+    public GameObject manager;
+
     private void Awake()
     {
-        //manager = GetComponent<NetworkManager>();
+        //manager = GameObject.FindGameObjectWithTag("NetworkManager");
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //ipAddress = ;
-        //Debug.Log("IP address is " + manager.networkAddress + "...");
+        //Debug.Log("IP address is " + manager.GetComponent<NetworkHUD>().ip + "...");
     }
 
     public void collectJoinInfo() //string ip
@@ -33,6 +35,10 @@ public class PlayerSelections : MonoBehaviour
         ipAddress = inputAddress.text;
         displayName = inputName.text;
         playerCharacter = CharacterSelection.selectedCharacter;
+
+        manager.GetComponent<NetworkHUD>().StartButtons(ipAddress);
+
+        gameObject.SetActive(false);
     }
 
 }
