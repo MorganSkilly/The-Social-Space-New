@@ -16,7 +16,7 @@ public class ConnectButton : MonoBehaviour
 
     public void inputAddress()
     {
-        if(input.text.Length > 14)
+        if(input.text.Length > 7)
         {
             button.interactable = true;
         }
