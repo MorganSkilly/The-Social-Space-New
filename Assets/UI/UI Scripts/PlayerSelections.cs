@@ -30,6 +30,7 @@ public class PlayerSelections : MonoBehaviour
         //Debug.Log("IP address is " + manager.GetComponent<NetworkHUD>().ip + "...");
     }
 
+
     public void collectJoinInfo() //string ip
     {
         ipAddress = inputAddress.text;
