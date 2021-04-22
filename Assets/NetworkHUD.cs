@@ -23,20 +23,28 @@ public class NetworkHUD : MonoBehaviour
     void Awake()
     {
         manager = GetComponent<NetworkManager>();
-        input = GetComponent<PlayerSelections>();
+        //input = GetComponent<PlayerSelections>();
     }
 
-    private void Start()
+    /*private void Start()
     {
+<<<<<<< Updated upstream
         Debug.Log("IP address " + manager.networkAddress);
+=======
+        //input.ipAddress = manager.networkAddress;
+>>>>>>> Stashed changes
 
         //input.ipAddress = manager.networkAddress;
 
+<<<<<<< Updated upstream
         //input.collectJoinInfo(manager.networkAddress);
+=======
+        //Debug.Log("IP address " + input.ipAddress);
+>>>>>>> Stashed changes
 
         if (!NetworkClient.isConnected && !NetworkServer.active)
         {
-            StartButtons();
+            StartButtons(manager.networkAddress);
         }
         else
         {
@@ -57,10 +65,10 @@ public class NetworkHUD : MonoBehaviour
         }
 
         StopButtons();
-    }
+    }*/
     
  
-    public void StartButtons()
+    public void StartButtons(string ipaddress)
     {
         if (!NetworkClient.active)
         {
@@ -73,8 +81,8 @@ public class NetworkHUD : MonoBehaviour
             // Client + IP
 
             manager.StartClient();
-                
-            //manager.networkAddress = GUILayout.TextField(manager.networkAddress);
+
+            manager.networkAddress = ipaddress; //GUILayout.TextField(manager.networkAddress);
 
             /*// Server Only
             if (Application.platform == RuntimePlatform.WebGLPlayer)
