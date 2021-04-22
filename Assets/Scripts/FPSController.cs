@@ -82,7 +82,7 @@ public class FPSController : NetworkBehaviour
     {
         sceneScript.playerScript = this;
         Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = new Vector3(0, 0, 0);
+        Camera.main.transform.localPosition = new Vector3(0, 0.3f, 0);
 
         characterModel.SetActive(false);
     }
