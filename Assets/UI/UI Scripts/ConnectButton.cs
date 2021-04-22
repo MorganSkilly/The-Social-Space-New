@@ -20,7 +20,6 @@ public class ConnectButton : MonoBehaviour
         {
             button.interactable = true;
         }
-
         else
         {
             button.interactable = false;
