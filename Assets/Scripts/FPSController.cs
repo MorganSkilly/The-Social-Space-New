@@ -29,7 +29,7 @@ public class FPSController : NetworkBehaviour
     public bool lockCursor;
 
     [SerializeField]
-    public float mouseSensitivity = 10.0f;
+    public float mouseSensitivity = 0.2f;
 
     [SerializeField]
     public Vector2 pitchMinMax = new Vector2(-40.0f, 85.0f);
@@ -160,12 +160,12 @@ public class FPSController : NetworkBehaviour
             float mY = Input.GetAxisRaw("Mouse Y");
 
             //gross hack to stop camera swinging down at start
-            float mMag = Mathf.Sqrt(mX * mX + mY * mY);
+            /*float mMag = Mathf.Sqrt(mX * mX + mY * mY);
             if (mMag > 5)
             {
                 mX = 0;
                 mY = 0;
-            }
+            }*/
 
             yaw += mX * mouseSensitivity;
             pitch -= mY * mouseSensitivity;

@@ -67,16 +67,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  walkSpeed: 3
+  walkSpeed: 3.5
   characterModel: {fileID: 1896973475210421360}
   runSpeed: 6
-  smoothMoveTime: 0.1
+  smoothMoveTime: 0.01
   jumpHeight: 8
   gravity: 18
   lockCursor: 1
-  mouseSensitivity: 10
-  pitchMinMax: {x: -40, y: 85}
-  rotationSmoothTime: 0.1
+  mouseSensitivity: 3.5
+  pitchMinMax: {x: -75, y: 85}
+  rotationSmoothTime: 0.05
   yaw: 0
   pitch: 0
 --- !u!114 &8105820961280983025
