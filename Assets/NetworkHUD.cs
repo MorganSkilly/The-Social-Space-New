@@ -28,11 +28,11 @@ public class NetworkHUD : MonoBehaviour
 
     private void Start()
     {
-        input.ipAddress = manager.networkAddress;
+        Debug.Log("IP address " + manager.networkAddress);
+
+        //input.ipAddress = manager.networkAddress;
 
         //input.collectJoinInfo(manager.networkAddress);
-
-        Debug.Log("IP address " + input.ipAddress);
 
         if (!NetworkClient.isConnected && !NetworkServer.active)
         {
@@ -105,7 +105,7 @@ public class NetworkHUD : MonoBehaviour
         }
         if (NetworkClient.isConnected)
         {
-            GUILayout.Label("Client: address=" + input.ipAddress);
+            GUILayout.Label("Client: address=" + manager.networkAddress);
         }
     }
 
