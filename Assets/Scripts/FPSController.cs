@@ -119,9 +119,7 @@ public class FPSController : NetworkBehaviour
     {
         if (lockCursor)
         {
-
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
             Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
             Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
 
