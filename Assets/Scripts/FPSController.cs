@@ -91,11 +91,8 @@ public class FPSController : NetworkBehaviour
     void Start()
     {
         cam = Camera.main;
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+
+        LockCursor();
 
         controller = GetComponent<CharacterController>();
 
@@ -113,62 +110,95 @@ public class FPSController : NetworkBehaviour
         Movement();
 
         MouseInput();
+
+        CheckCursor();
     }
 
 
     private void Movement()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
-        Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
-
-        float currentSpeed = (Input.GetKey(KeyCode.LeftShift)) ? runSpeed : walkSpeed;
-        Vector3 targetVelocity = worldInputDir * currentSpeed;
-        velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, smoothMoveTime);
-
-        verticalVelocity -= gravity * Time.deltaTime;
-        velocity = new Vector3(velocity.x, verticalVelocity, velocity.z);
-
-        var flags = controller.Move(velocity * Time.deltaTime);
-        if (flags == CollisionFlags.Below)
+        if (lockCursor)
         {
-            jumping = false;
-            lastGrounedTime = Time.time;
-            verticalVelocity = 0;
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            float timerSinceGrounded = Time.time - lastGrounedTime;
-            if (controller.isGrounded || (!jumping && timerSinceGrounded < 0.15f))
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
+            Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
+
+            float currentSpeed = (Input.GetKey(KeyCode.LeftShift)) ? runSpeed : walkSpeed;
+            Vector3 targetVelocity = worldInputDir * currentSpeed;
+            velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, smoothMoveTime);
+
+            verticalVelocity -= gravity * Time.deltaTime;
+            velocity = new Vector3(velocity.x, verticalVelocity, velocity.z);
+
+            var flags = controller.Move(velocity * Time.deltaTime);
+            if (flags == CollisionFlags.Below)
             {
-                jumping = true;
-                verticalVelocity = jumpHeight;
+                jumping = false;
+                lastGrounedTime = Time.time;
+                verticalVelocity = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                float timerSinceGrounded = Time.time - lastGrounedTime;
+                if (controller.isGrounded || (!jumping && timerSinceGrounded < 0.15f))
+                {
+                    jumping = true;
+                    verticalVelocity = jumpHeight;
+                }
             }
         }
     }
 
     private void MouseInput()
     {
-        float mX = Input.GetAxisRaw("Mouse X");
-        float mY = Input.GetAxisRaw("Mouse Y");
-
-        //gross hack to stop camera swinging down at start
-        float mMag = Mathf.Sqrt(mX * mX + mY * mY);
-        if (mMag > 5)
+        if (lockCursor)
         {
-            mX = 0;
-            mY = 0;
+            float mX = Input.GetAxisRaw("Mouse X");
+            float mY = Input.GetAxisRaw("Mouse Y");
+
+            //gross hack to stop camera swinging down at start
+            float mMag = Mathf.Sqrt(mX * mX + mY * mY);
+            if (mMag > 5)
+            {
+                mX = 0;
+                mY = 0;
+            }
+
+            yaw += mX * mouseSensitivity;
+            pitch -= mY * mouseSensitivity;
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+            smoothPitch = Mathf.SmoothDampAngle(smoothPitch, pitch, ref pitchSmoothV, rotationSmoothTime);
+            smoothYaw = Mathf.SmoothDampAngle(smoothYaw, yaw, ref yawSmoothV, rotationSmoothTime);
+
+            transform.eulerAngles = Vector3.up * smoothYaw;
+            cam.transform.localEulerAngles = Vector3.right * smoothPitch;
         }
+    }
 
-        yaw += mX * mouseSensitivity;
-        pitch -= mY * mouseSensitivity;
-        pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
-        smoothPitch = Mathf.SmoothDampAngle(smoothPitch, pitch, ref pitchSmoothV, rotationSmoothTime);
-        smoothYaw = Mathf.SmoothDampAngle(smoothYaw, yaw, ref yawSmoothV, rotationSmoothTime);
+    private void CheckCursor()
+    {
+        if(Input.GetKeyDown(KeyCode.U) && lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            lockCursor = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.U) && !lockCursor)
+        {
+            lockCursor = true;
+            LockCursor();
+        }
+    }
 
-        transform.eulerAngles = Vector3.up * smoothYaw;
-        cam.transform.localEulerAngles = Vector3.right * smoothPitch;
+    private void LockCursor()
+    {
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
