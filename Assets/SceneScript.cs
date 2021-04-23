@@ -20,7 +20,7 @@ namespace QuickStart
         {
             //called from sync var hook, to update info on screen for all players
             canvasStatusText.text = statusText;
-            cinemaController.YoutubeTest(statusText);
+            cinemaController.Play(statusText);
         }
 
         public void ButtonSendMessage()

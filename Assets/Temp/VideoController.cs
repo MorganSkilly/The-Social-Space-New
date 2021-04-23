@@ -35,7 +35,7 @@ public class VideoController : NetworkBehaviour
     {
     }
 
-    public void PlayNew()
+    /*public void PlayNew()
     {
         string videoLink = iField.text;
 
@@ -58,15 +58,15 @@ public class VideoController : NetworkBehaviour
             audioScreen.Play();
             cinemaScreen.Play();
         }
-    }
+    }*/
 
-    public void Play()
+    public void Play(string vidLink)
     {
-        audioScreen.Play();
+        cinemaScreen.url = vidLink;
         cinemaScreen.Play();
     }
 
-    public void YoutubeTest(string videoLink)
+    /*public void YoutubeTest(string videoLink)
     {
         //string videoLink = "https://www.youtube.com/watch?v=QYU8zydUqD8&ab_channel=THXLtd";
 
@@ -89,9 +89,9 @@ public class VideoController : NetworkBehaviour
             audioScreen.Play();
             cinemaScreen.Play();
         }
-    }
+    }*/
 
-    public void Pause()
+    /*public void Pause()
     {
         audioScreen.Pause();
         cinemaScreen.Pause();
@@ -122,5 +122,5 @@ public class VideoController : NetworkBehaviour
         withAudio = youTube.GetVideoAsync(sourceURL).GetAwaiter().GetResult().Uri.ToString();
 
         return withAudio;
-    }
+    }*/
 }

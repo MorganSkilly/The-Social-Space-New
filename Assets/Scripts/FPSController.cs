@@ -75,7 +75,7 @@ public class FPSController : NetworkBehaviour
         if (sceneScript)
         {
             sceneScript.statusText = sceneScript.canvasInputText.text;
-            sceneScript.cinemaController.YoutubeTest(sceneScript.statusText);
+            sceneScript.cinemaController.Play(sceneScript.statusText);
         }
     }
     public override void OnStartLocalPlayer()
