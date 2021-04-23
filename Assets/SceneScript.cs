@@ -61,6 +61,17 @@ namespace QuickStart
                 return;
         }
 
+        public void StopVideo()
+        {
+            if (!playerScript.isClientOnly)
+            {
+                cinemaController.Stop();
+                cinemaController.Play();
+            }
+            else
+                return;
+        }
+
         public void ButtonSendMessage()
         {
             if (playerScript != null)

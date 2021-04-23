@@ -40,14 +40,12 @@ public class VideoController : MonoBehaviour
         cinemaScreen.Play();
     }
 
-    public void Stop(string vidLink)
+    public void Stop()
     {
-        cinemaScreen.url = vidLink;
         cinemaScreen.Stop();
     }
     public void Pause()
     {
-        //cinemaScreen.url = vidLink;
         cinemaScreen.Pause();
 
     }
