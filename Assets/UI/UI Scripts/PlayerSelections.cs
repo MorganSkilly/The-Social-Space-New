@@ -7,37 +7,34 @@ using UnityEngine.UI;
 public class PlayerSelections : MonoBehaviour
 {
     ///NetworkManager manager;
+    [SerializeField]
+    InputField inputName;
 
-    public InputField inputName;
-    public CharacterSelection CharacterSelection;
-    public InputField inputAddress;
+    [SerializeField]
+    CharacterSelection CharacterSelection;
 
-    public string displayName;
-    public int playerCharacter;
-    public string ipAddress;
+    [SerializeField]
+    InputField inputAddress;
 
-    public GameObject manager;
+    private string displayName;
+    private int playerCharacter;
+    private string ipAddress;
+
+    [SerializeField]
+    NetworkHUD manager;
 
     private void Awake()
     {
-        //manager = GameObject.FindGameObjectWithTag("NetworkManager");
+        manager = GetComponent<NetworkHUD>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //ipAddress = ;
-        //Debug.Log("IP address is " + manager.GetComponent<NetworkHUD>().ip + "...");
-    }
-
-
-    public void collectJoinInfo() //string ip
+    public void collectJoinInfo()
     {
         ipAddress = inputAddress.text;
         displayName = inputName.text;
         playerCharacter = CharacterSelection.selectedCharacter;
 
-        manager.GetComponent<NetworkHUD>().StartButtons(ipAddress);
+        manager.StartButtons(ipAddress);
 
         gameObject.SetActive(false);
     }

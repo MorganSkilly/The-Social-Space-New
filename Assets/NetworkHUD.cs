@@ -1,110 +1,31 @@
-﻿// vis2k: GUILayout instead of spacey += ...; removed Update hotkeys to avoid
-// confusion if someone accidentally presses one.
-using UnityEngine;
+﻿using UnityEngine;
 using Mirror;
 
-
-    /// <summary>
-    /// An extension for the NetworkManager that displays a default HUD for controlling the network state of the game.
-    /// <para>This component also shows useful internal state for the networking system in the inspector window of the editor. It allows users to view connections, networked objects, message handlers, and packet statistics. This information can be helpful when debugging networked games.</para>
-    /// </summary>
-/*    [DisallowMultipleComponent]
-    [AddComponentMenu("Network/NetworkHUD")]
-    [RequireComponent(typeof(NetworkManager))]
-    [HelpURL("https://mirror-networking.com/docs/Articles/Components/NetworkManagerHUD.html")]*/
 public class NetworkHUD : MonoBehaviour
 {
     NetworkManager manager;
 
-    PlayerSelections input;
-
-    //private string networkAddress;
 
     void Awake()
     {
         manager = GetComponent<NetworkManager>();
-        //input = GetComponent<PlayerSelections>();
     }
 
-    /*private void Start()
-    {
-<<<<<<< Updated upstream
-        Debug.Log("IP address " + manager.networkAddress);
-=======
-        //input.ipAddress = manager.networkAddress;
->>>>>>> Stashed changes
-
-        //input.ipAddress = manager.networkAddress;
-
-<<<<<<< Updated upstream
-        //input.collectJoinInfo(manager.networkAddress);
-=======
-        //Debug.Log("IP address " + input.ipAddress);
->>>>>>> Stashed changes
-
-        if (!NetworkClient.isConnected && !NetworkServer.active)
-        {
-            StartButtons(manager.networkAddress);
-        }
-        else
-        {
-            //StatusLabels();
-            Debug.Log("Labels");
-        }
-
-        // client ready
-        if (NetworkClient.isConnected && !ClientScene.ready)
-        {
-            ClientScene.Ready(NetworkClient.connection);
-
-            if (ClientScene.localPlayer == null)
-            {
-                ClientScene.AddPlayer(NetworkClient.connection);
-            }
-
-        }
-
-        StopButtons();
-    }*/
-    
- 
     public void StartButtons(string ipaddress)
     {
         if (!NetworkClient.active)
         {
-            // Server + Client
-           /* if (Application.platform != RuntimePlatform.WebGLPlayer)
-            {
-                manager.StartHost();                   
-            }
-*/
-            // Client + IP
-
             manager.StartClient();
-
             manager.networkAddress = ipaddress; //GUILayout.TextField(manager.networkAddress);
-
-            /*// Server Only
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
-                // cant be a server in webgl build
-                GUILayout.Box("(  WebGL cannot be server  )");
-            }
-            else
-            {
-                if (GUILayout.Button("Server Only")) manager.StartServer();
-            }*/
         }
         else
         {
             // Connecting
-
-            manager.StopClient();
-                
+            manager.StopClient(); 
         }
     }
 
-    void StatusLabels()
+   /* void StatusLabels()
     {
         // server / client status message
         if (NetworkServer.active)
@@ -138,5 +59,5 @@ public class NetworkHUD : MonoBehaviour
             manager.StopServer();
                 
         }
-    }
+    }*/
 }

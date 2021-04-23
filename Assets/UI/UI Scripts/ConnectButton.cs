@@ -25,10 +25,4 @@ public class ConnectButton : MonoBehaviour
             button.interactable = false;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
