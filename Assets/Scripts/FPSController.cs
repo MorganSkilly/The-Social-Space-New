@@ -74,8 +74,8 @@ public class FPSController : NetworkBehaviour
     {
         if (sceneScript)
         {
-            sceneScript.statusText = sceneScript.canvasInputText.text;
-            sceneScript.cinemaController.Play(sceneScript.statusText);
+            sceneScript.newVideoUrl = sceneScript.canvasInputText.text;
+            sceneScript.cinemaController.PlayNewVideo(sceneScript.newVideoUrl);
         }
     }
     public override void OnStartLocalPlayer()

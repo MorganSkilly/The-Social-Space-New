@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using VideoLibrary;
 
-public class VideoController : NetworkBehaviour
+public class VideoController : MonoBehaviour
 {
     [SerializeField]
     public InputField iField;
@@ -21,7 +21,7 @@ public class VideoController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,9 +29,26 @@ public class VideoController : NetworkBehaviour
     {
     }
 
-    public void Play(string vidLink)
+    public void PlayNewVideo(string vidLink)
     {
         cinemaScreen.url = vidLink;
         cinemaScreen.Play();
+    }
+
+    public void Play()
+    {
+        cinemaScreen.Play();
+    }
+
+    public void Stop(string vidLink)
+    {
+        cinemaScreen.url = vidLink;
+        cinemaScreen.Stop();
+    }
+    public void Pause()
+    {
+        //cinemaScreen.url = vidLink;
+        cinemaScreen.Pause();
+
     }
 }
