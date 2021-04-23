@@ -32,23 +32,33 @@ namespace QuickStart
         {
             //called from sync var hook, to update info on screen for all players
             //canvasStatusText.text = videoText;
-            _Old = cinemaController.cinemaScreen.url;
-            _New = newVideoUrl;
-            cinemaController.PlayNewVideo(newVideoUrl);
+            if (!playerScript.isClientOnly)
+            {
+                _Old = cinemaController.cinemaScreen.url;
+                _New = newVideoUrl;
+                cinemaController.PlayNewVideo(newVideoUrl);
+            }
+            else
+                return;
         }
 
         public void PauseVideo()
         {
-            if (!isStopped)
+            if (!playerScript.isClientOnly)
             {
-                cinemaController.Pause();
-                isStopped = true;
+                if (!isStopped)
+                {
+                    cinemaController.Pause();
+                    isStopped = true;
+                }
+                else
+                {
+                    cinemaController.Play();
+                    isStopped = false;
+                }
             }
             else
-            {
-                cinemaController.Play();
-                isStopped = false;
-            }
+                return;
         }
 
         public void ButtonSendMessage()
