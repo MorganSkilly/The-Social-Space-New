@@ -82,7 +82,7 @@ public class FPSController : NetworkBehaviour
     {
         sceneScript.playerScript = this;
         Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = new Vector3(0, 0.3f, 0);
+        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
 
         characterModel.SetActive(false);
     }
@@ -100,6 +100,8 @@ public class FPSController : NetworkBehaviour
         pitch = cam.transform.localEulerAngles.x; //local = relative to parent's position
         smoothYaw = yaw;
         smoothPitch = pitch;
+
+        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
     }
 
     // Update is called once per frame
