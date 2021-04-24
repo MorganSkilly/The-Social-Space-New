@@ -30,25 +30,49 @@ namespace QuickStart
 
         void InsertNewVideo(string _Old, string _New)
         {
-            //called from sync var hook, to update info on screen for all players
+            //called from sync var hook, to update info on screen for all players 
             //canvasStatusText.text = videoText;
-            _Old = cinemaController.cinemaScreen.url;
-            _New = newVideoUrl;
-            cinemaController.PlayNewVideo(newVideoUrl);
-        }
-
-        public void PauseVideo()
-        {
-            if (!isStopped)
+            if (!playerScript.isClientOnly)
             {
-                cinemaController.Pause();
-                isStopped = true;
+                _Old = cinemaController.cinemaScreen.url;
+                _New = newVideoUrl;
+                cinemaController.PlayNewVideo(newVideoUrl);
             }
             else
             {
-                cinemaController.Play();
-                isStopped = false;
+                cinemaController.PlayNewVideo(_New);
             }
+        } 
+
+        public void PauseVideo()
+        {
+            if (!playerScript.isClientOnly)
+            {
+                if (!isStopped)
+                {
+                    cinemaController.Pause();
+                    isStopped = true;
+                }
+                else
+                {
+                    cinemaController.Play();
+                    isStopped = false;
+                }
+            }
+            else
+                return;
+           
+        }
+
+        public void StopVideo()
+        {
+            if (!playerScript.isClientOnly)
+            {
+                cinemaController.Stop();
+                cinemaController.Play();
+            }
+            else
+                return;
         }
 
         public void ButtonSendMessage()
