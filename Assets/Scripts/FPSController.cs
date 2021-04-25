@@ -69,8 +69,8 @@ public class FPSController : NetworkBehaviour
         sceneScript = GameObject.FindObjectOfType<SceneScript>();
     }
 
-    [Command]
-    public void CmdSendPlayerMessage()
+    [ClientRpc]
+    public void PlayNewVideoUrl()
     {
         if (sceneScript)
         {

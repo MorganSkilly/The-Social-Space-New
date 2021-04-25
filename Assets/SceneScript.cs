@@ -28,25 +28,35 @@ namespace QuickStart
         }
 
 
-        void InsertNewVideo(string _Old, string _New)
-        {
-            //called from sync var hook, to update info on screen for all players 
-            //canvasStatusText.text = videoText;
-            if (!playerScript.isClientOnly)
-            {
-                _Old = cinemaController.cinemaScreen.url;
-                _New = newVideoUrl;
-                cinemaController.PlayNewVideo(newVideoUrl);
-            }
-            else
-            {
-                cinemaController.PlayNewVideo(_New);
-            }
-        } 
+         void InsertNewVideo(string _Old, string _New)
+         {
+             //called from sync var hook, to update info on screen for all players 
+             //canvasStatusText.text = videoText;
+             if (!playerScript.isClientOnly)
+             {
+                 _Old = cinemaController.cinemaScreen.url;
+                 _New = newVideoUrl;
+                 cinemaController.PlayNewVideo(newVideoUrl);
+             }
+             else
+             {
+                 cinemaController.PlayNewVideo(_New);
+             }
+         } 
 
+
+        public void InsertNewVideoUrl()
+        {
+            if (playerScript != null)
+            {
+                playerScript.PlayNewVideoUrl();
+            }
+        }
+
+        [ClientRpc]
         public void PauseVideo()
         {
-            if (!playerScript.isClientOnly)
+            if (playerScript != null)
             {
                 if (!isStopped)
                 {
@@ -64,9 +74,10 @@ namespace QuickStart
            
         }
 
+        [ClientRpc]
         public void StopVideo()
         {
-            if (!playerScript.isClientOnly)
+            if (playerScript != null)
             {
                 cinemaController.Stop();
                 cinemaController.Play();
@@ -75,12 +86,5 @@ namespace QuickStart
                 return;
         }
 
-        public void ButtonSendMessage()
-        {
-            if (playerScript != null)
-            {
-                playerScript.CmdSendPlayerMessage();
-            }
-        }
     }
 }

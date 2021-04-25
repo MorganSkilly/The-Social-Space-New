@@ -429,6 +429,16 @@ PrefabInstance:
       propertyPath: m_TargetAudioSources.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5212424143450998855, guid: 6b6c7b7aad41a82449e607697eccd56b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212424143450998855, guid: 6b6c7b7aad41a82449e607697eccd56b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNewVideo
+      objectReference: {fileID: 0}
     - target: {fileID: 5642770971464533544, guid: 6b6c7b7aad41a82449e607697eccd56b,
         type: 3}
       propertyPath: m_Name
@@ -1350,7 +1360,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 485685854}
-        m_MethodName: ButtonSendMessage
+        m_MethodName: InsertNewVideoUrl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
