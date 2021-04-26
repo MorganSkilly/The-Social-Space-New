@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Art Pipeline/Environment/Hub/Hub_Central_Roof.fbx.meta
 guid: e9e6b1c505ec2834b80e6674f0cb8bb3
 ModelImporter:
   serializedVersion: 19301
@@ -9,6 +10,13 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: HubCentralRoof_Mat
     second: {fileID: 2100000, guid: 415bc1a0a7c9cc4489d8c1044eeaea49, type: 2}
+=======
+guid: 3535676e5ceb5994887e7f0a6f9a781b
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects: {}
+>>>>>>> 3537083de155ce9252bd70277c23952350a3472e:Assets/Art Pipeline/Environment/Hub/Ceiling_Light.fbx.meta
   materials:
     materialImportMode: 1
     materialName: 0
