@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3413384702438715157}
   - component: {fileID: 1331255682251510306}
   - component: {fileID: 3089370176140633271}
-  - component: {fileID: 1373746838278013178}
+  - component: {fileID: 662324569017001610}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -83,7 +83,6 @@ MonoBehaviour:
   rotationSmoothTime: 0.05
   yaw: 0
   pitch: 0
-  anim: {fileID: 0}
 --- !u!114 &8105820961280983025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +174,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1373746838278013178
+--- !u!114 &662324569017001610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +189,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 1
-  animator: {fileID: 0}
+  animator: {fileID: 7789659308106888864}
 --- !u!95 &7789659308106888864
 Animator:
   serializedVersion: 3

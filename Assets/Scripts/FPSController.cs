@@ -64,7 +64,6 @@ public class FPSController : NetworkBehaviour
 
     private SceneScript sceneScript;
 
-    [SerializeField]
     private Animator anim;
 
     void Awake()
@@ -92,7 +91,7 @@ public class FPSController : NetworkBehaviour
     }
 
 
-    //[ClientCallback]
+    [ClientCallback]
     void Update()
     {
         if (!isLocalPlayer) { return; }
@@ -109,6 +108,15 @@ public class FPSController : NetworkBehaviour
 
     }
 
+    public override void OnStartLocalPlayer()
+    {
+        sceneScript.playerScript = this;
+        Camera.main.transform.SetParent(transform);
+        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
+
+        characterModel.SetActive(false);
+    }
+
     [ClientRpc]
     public void PlayNewVideoUrl()
     {
@@ -118,15 +126,6 @@ public class FPSController : NetworkBehaviour
             sceneScript.cinemaController.PlayNewVideo(sceneScript.newVideoUrl);
         }
     }
-    public override void OnStartLocalPlayer()
-    {
-        sceneScript.playerScript = this;
-        Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
-
-        //characterModel.SetActive(false);
-    }
-
 
     private void Movement()
     {
@@ -135,8 +134,6 @@ public class FPSController : NetworkBehaviour
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
             Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
-
-            anim.SetBool("isWalking", input.magnitude > 0.1f ? true : false);
 
             float currentSpeed = (Input.GetKey(KeyCode.LeftShift)) ? runSpeed : walkSpeed;
             Vector3 targetVelocity = worldInputDir * currentSpeed;
@@ -173,7 +170,9 @@ public class FPSController : NetworkBehaviour
         Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z; //take forward velocity as it's the one we need
         anim.SetFloat("Velocity", speed);*/
-        
+
+        anim.SetBool("isWalking", controller.velocity.magnitude > 0.1f ? true : false);
+
     }
 
     private void MouseInput()
