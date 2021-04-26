@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CeilingLight_Mat
-    second: {fileID: 2100000, guid: 7029f0a8a36076e4f8301d37c3a9a11c, type: 2}
+    second: {fileID: 2100000, guid: 7a36ebfa1b340df488c54147ef6851f7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

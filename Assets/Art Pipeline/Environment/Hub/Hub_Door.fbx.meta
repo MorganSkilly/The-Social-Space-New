@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 65753d4d26df7934382e93734e905cb4
+guid: 06f4ec37034b9e84fbff68018ffa91c4
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: CeilingLight_Mat
-    second: {fileID: 2100000, guid: 7a36ebfa1b340df488c54147ef6851f7, type: 2}
+      name: HubDoor_Mat
+    second: {fileID: 2100000, guid: 8dd35a018770c7c4a855ce26e1f9465a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -39,9 +39,9 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 75
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -67,7 +67,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
@@ -86,7 +86,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 75
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

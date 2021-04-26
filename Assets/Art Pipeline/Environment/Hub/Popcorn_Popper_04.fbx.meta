@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ccc93f1b5266dd46a28cbd5d676fdcd
+guid: b3360028e50918c4f9bfba37e2c50749
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,12 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HubSkyLight_Mat
-    second: {fileID: 2100000, guid: d8b201509c3b04c4e8f1323ad4828b6e, type: 2}
+      name: Popcorn_popper_material
+    second: {fileID: 2100000, guid: bf30ae3ab1f8d484b8249b7a9ece26ca, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HubSkylightGlass_Mat
+      name: glass_panels1
     second: {fileID: 2100000, guid: 9e9e719e44fe46b488f5196fcae2ab06, type: 2}
   materials:
     materialImportMode: 1
@@ -44,9 +44,9 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 20
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -72,7 +72,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
@@ -91,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 20
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

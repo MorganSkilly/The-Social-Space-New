@@ -3,7 +3,12 @@ guid: 25bcc3641ff88c64e9cbfba72f123a91
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HubWall_Mat
+    second: {fileID: 2100000, guid: 392e9e01839c82646857cfbd067e67fb, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

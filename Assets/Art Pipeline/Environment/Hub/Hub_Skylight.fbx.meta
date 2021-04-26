@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HubSkyLight_Mat
-    second: {fileID: 2100000, guid: 415bc1a0a7c9cc4489d8c1044eeaea49, type: 2}
+    second: {fileID: 2100000, guid: d8b201509c3b04c4e8f1323ad4828b6e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
