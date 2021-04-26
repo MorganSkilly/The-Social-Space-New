@@ -63,13 +63,15 @@ public class FPSController : NetworkBehaviour
     private float lastGrounedTime;
 
     private SceneScript sceneScript;
+
+    [SerializeField]
     private Animator anim;
 
     void Awake()
     {
         //allow all players to run this
         sceneScript = FindObjectOfType<SceneScript>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -85,6 +87,8 @@ public class FPSController : NetworkBehaviour
         MouseInput();
 
         CheckCursor();
+
+        UpdateMovementAnimation();
 
     }
 
@@ -134,6 +138,8 @@ public class FPSController : NetworkBehaviour
             Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
             Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
 
+
+
             float currentSpeed = (Input.GetKey(KeyCode.LeftShift)) ? runSpeed : walkSpeed;
             Vector3 targetVelocity = worldInputDir * currentSpeed;
             velocity = Vector3.SmoothDamp(velocity, targetVelocity, ref smoothV, smoothMoveTime);
@@ -159,16 +165,18 @@ public class FPSController : NetworkBehaviour
                 }
             }
 
-            UpdateMovementAnimation();
+            //UpdateMovementAnimation();
         }
     }
 
     private void UpdateMovementAnimation()
     {
-        Vector3 velocity = controller.velocity;
+        /*Vector3 velocity = controller.velocity;
         Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z; //take forward velocity as it's the one we need
-        anim.SetFloat("Velocity", speed);
+        anim.SetFloat("Velocity", speed);*/
+
+        anim.SetBool("isWalking", velocity.magnitude > 0.1f);
     }
 
     private void MouseInput()
