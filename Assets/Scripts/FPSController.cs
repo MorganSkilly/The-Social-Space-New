@@ -72,10 +72,27 @@ public class FPSController : NetworkBehaviour
         //allow all players to run this
         sceneScript = FindObjectOfType<SceneScript>();
         anim = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
 
     }
 
-    [ClientCallback]
+    // Start is called before the first frame update
+    void Start()
+    {
+        cam = Camera.main;
+
+        LockCursor();
+
+        yaw = transform.eulerAngles.y;
+        pitch = cam.transform.localEulerAngles.x; //local = relative to parent's position
+        smoothYaw = yaw;
+        smoothPitch = pitch;
+
+        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
+    }
+
+
+    //[ClientCallback]
     void Update()
     {
         if (!isLocalPlayer) { return; }
@@ -107,27 +124,8 @@ public class FPSController : NetworkBehaviour
         Camera.main.transform.SetParent(transform);
         Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
 
-        characterModel.SetActive(false);
+        //characterModel.SetActive(false);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        cam = Camera.main;
-
-        LockCursor();
-
-        controller = GetComponent<CharacterController>();
-
-        yaw = transform.eulerAngles.y;
-        pitch = cam.transform.localEulerAngles.x; //local = relative to parent's position
-        smoothYaw = yaw;
-        smoothPitch = pitch;
-
-        Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
-    }
-
-
 
 
     private void Movement()
@@ -138,7 +136,7 @@ public class FPSController : NetworkBehaviour
             Vector3 inputDir = new Vector3(input.x, 0, input.y).normalized;
             Vector3 worldInputDir = transform.TransformDirection(inputDir); //local to world space
 
-
+            anim.SetBool("isWalking", input.magnitude > 0.1f ? true : false);
 
             float currentSpeed = (Input.GetKey(KeyCode.LeftShift)) ? runSpeed : walkSpeed;
             Vector3 targetVelocity = worldInputDir * currentSpeed;
@@ -175,8 +173,7 @@ public class FPSController : NetworkBehaviour
         Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z; //take forward velocity as it's the one we need
         anim.SetFloat("Velocity", speed);*/
-
-        anim.SetBool("isWalking", velocity.magnitude > 0.1f);
+        
     }
 
     private void MouseInput()
