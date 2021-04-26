@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 51d7fde1b276f2548a07822ce0746991
+guid: 68fa4e9c9c7704944a4ef317aaa396f1
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TheaterChair_Mat
-    second: {fileID: 2100000, guid: 615cce0bfac765f45b938c16182ccb8a, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

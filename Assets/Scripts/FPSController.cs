@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using Mirror;
+using UnityEngine.PlayerLoop;
 
 public class FPSController : NetworkBehaviour
 {
@@ -62,11 +63,29 @@ public class FPSController : NetworkBehaviour
     private float lastGrounedTime;
 
     private SceneScript sceneScript;
+    private Animator anim;
 
     void Awake()
     {
         //allow all players to run this
-        sceneScript = GameObject.FindObjectOfType<SceneScript>();
+        sceneScript = FindObjectOfType<SceneScript>();
+        anim = GetComponentInChildren<Animator>();
+
+    }
+
+    [ClientCallback]
+    void Update()
+    {
+        if (!isLocalPlayer) { return; }
+
+        if (!hasAuthority) { return; }
+
+        Movement();
+
+        MouseInput();
+
+        CheckCursor();
+
     }
 
     [ClientRpc]
@@ -104,17 +123,7 @@ public class FPSController : NetworkBehaviour
         Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!isLocalPlayer) { return; }
 
-        Movement();
-
-        MouseInput();
-
-        CheckCursor();
-    }
 
 
     private void Movement()
@@ -149,7 +158,17 @@ public class FPSController : NetworkBehaviour
                     verticalVelocity = jumpHeight;
                 }
             }
+
+            UpdateMovementAnimation();
         }
+    }
+
+    private void UpdateMovementAnimation()
+    {
+        Vector3 velocity = controller.velocity;
+        Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z; //take forward velocity as it's the one we need
+        anim.SetFloat("Velocity", speed);
     }
 
     private void MouseInput()

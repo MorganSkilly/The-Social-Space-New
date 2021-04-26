@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 7de0bd49a772d884ca2970c7c946eb17
+guid: 1deb42459e74d934bb76d43a17044609
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Till_Mat
-    second: {fileID: 2100000, guid: e8db8bc2becba8842b9219a783b35e2d, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
