@@ -3,7 +3,17 @@ guid: 75e0b7ccf24067b4da9b2ca45ce8cf90
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TheaterProjectorWindow_Mat
+    second: {fileID: 2100000, guid: bd916e2bc929d0e4ca44fc3c6255a539, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 9ea22c1def054824f8c8b5d6cbd199be, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
