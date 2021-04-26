@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 4d9ed90262a91a34ea363988d890c167
+guid: cc7b3122ef6fbae45bd3df62680303db
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TheaterProjectorWindow_Mat
-    second: {fileID: 2100000, guid: bd916e2bc929d0e4ca44fc3c6255a539, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 9ea22c1def054824f8c8b5d6cbd199be, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -72,7 +62,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0

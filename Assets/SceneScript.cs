@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using VideoLibrary;
+using UnityEngine.PlayerLoop;
 
 namespace QuickStart
 {
@@ -20,15 +21,30 @@ namespace QuickStart
         [SyncVar(hook = nameof(InsertNewVideo))]
         public string newVideoUrl;
 
-        // [SyncVar]
+     /*   [SyncVar]
+        private double frames;*/
 
         private void Start()
         {
             isStopped = false;
         }
 
+       /* private void Update()
+        {
+            SynchVideo();
+        }*/
 
-         void InsertNewVideo(string _Old, string _New)
+        /*    public override void OnStartLocalPlayer()
+            {
+                cinemaController.cinemaScreen.frame;
+            }*/
+
+        /*public override void OnStartAuthority()
+        {
+            frames = cinemaController.cinemaScreen.time;
+        }*/
+
+        void InsertNewVideo(string _Old, string _New)
          {
              //called from sync var hook, to update info on screen for all players 
              //canvasStatusText.text = videoText;
@@ -47,7 +63,7 @@ namespace QuickStart
 
         public void InsertNewVideoUrl()
         {
-            if (playerScript != null)
+            if (playerScript != null && playerScript.hasAuthority)
             {
                 playerScript.PlayNewVideoUrl();
             }
@@ -56,7 +72,7 @@ namespace QuickStart
         [ClientRpc]
         public void PauseVideo()
         {
-            if (playerScript != null)
+            if (playerScript != null && playerScript.hasAuthority)
             {
                 if (!isStopped)
                 {
@@ -70,14 +86,22 @@ namespace QuickStart
                 }
             }
             else
-                return;
-           
+                return;           
         }
+
+       /* public void SynchVideo()
+        {
+            if (playerScript.isClientOnly)
+            {
+                long clientVideo = cinemaController.cinemaScreen.frame;
+                frames = clientVideo;
+            }
+        }*/
 
         [ClientRpc]
         public void StopVideo()
         {
-            if (playerScript != null)
+            if (playerScript != null && playerScript.hasAuthority)
             {
                 cinemaController.Stop();
                 cinemaController.Play();

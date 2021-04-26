@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 10d495ddbf76f7d4a8cd76ba1c6f8072
+guid: fa222f5e6da8e2640858c393e9f2555d
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Popcorn_popper_material
-    second: {fileID: 2100000, guid: bf30ae3ab1f8d484b8249b7a9ece26ca, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: glass_panels1
-    second: {fileID: 2100000, guid: 9e9e719e44fe46b488f5196fcae2ab06, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0

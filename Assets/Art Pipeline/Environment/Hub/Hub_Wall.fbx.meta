@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 7772076371cf4514da84be3ab45ce692
+guid: 8a682c0710aadf04e84ac1216d12f9a0
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: AngledCounter_Glass
-    second: {fileID: 2100000, guid: c1d40f8b196509a4f935118ac605350c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: AngledCounter_Mat
-    second: {fileID: 2100000, guid: 0e0cb81b4c001f74a8b7fbc99148757c, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
