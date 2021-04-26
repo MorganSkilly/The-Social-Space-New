@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3413384702438715157}
   - component: {fileID: 1331255682251510306}
   - component: {fileID: 3089370176140633271}
-  - component: {fileID: 5380351827648136671}
   - component: {fileID: 1373746838278013178}
   m_Layer: 0
   m_Name: Player
@@ -84,7 +83,7 @@ MonoBehaviour:
   rotationSmoothTime: 0.05
   yaw: 0
   pitch: 0
-  anim: {fileID: 5380351827648136671}
+  anim: {fileID: 0}
 --- !u!114 &8105820961280983025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,25 +175,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &5380351827648136671
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6111356595636664680}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dfc87d0882649cf419271d864757f3f3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1373746838278013178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +190,26 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 1
-  animator: {fileID: 5380351827648136671}
+  animator: {fileID: 0}
+--- !u!95 &7789659308106888864
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219695475171534740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dfc87d0882649cf419271d864757f3f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &6526179601448245957
 PrefabInstance:
   m_ObjectHideFlags: 0

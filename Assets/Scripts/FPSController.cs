@@ -71,7 +71,7 @@ public class FPSController : NetworkBehaviour
     {
         //allow all players to run this
         sceneScript = FindObjectOfType<SceneScript>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
 
     }
