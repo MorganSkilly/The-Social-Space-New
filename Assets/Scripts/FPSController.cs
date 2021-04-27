@@ -59,6 +59,9 @@ public class FPSController : NetworkBehaviour
     private Vector3 rotationSmoothVelocity;
     private Vector3 currentRotation;
 
+    [SyncVar(hook = nameof(OnAnimChanged))]
+    public bool animState;
+
     private bool jumping;
     private float lastGrounedTime;
 
@@ -91,7 +94,7 @@ public class FPSController : NetworkBehaviour
     }
 
 
-    [ClientCallback]
+    //[ClientCallback]
     void Update()
     {
         if (!isLocalPlayer) { return; }
@@ -108,6 +111,8 @@ public class FPSController : NetworkBehaviour
 
     }
 
+    
+
     public override void OnStartLocalPlayer()
     {
         sceneScript.playerScript = this;
@@ -115,6 +120,18 @@ public class FPSController : NetworkBehaviour
         Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
 
         characterModel.SetActive(false);
+    }
+
+    void OnAnimChanged(bool _Old, bool _New)
+    {
+        anim.SetBool("isWalking", animState);
+    }
+
+    [Command]
+    public void CmdAnimCheck(bool state)
+    {
+        //player info sent to server, then server updates sync vars which handles it on all clients
+        animState = state;
     }
 
     [ClientRpc]
@@ -169,9 +186,14 @@ public class FPSController : NetworkBehaviour
         /*Vector3 velocity = controller.velocity;
         Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
         float speed = localVelocity.z; //take forward velocity as it's the one we need
-        anim.SetFloat("Velocity", speed);*/
+        anim.SetFloat("Velocity", speed);
 
-        anim.SetBool("isWalking", controller.velocity.magnitude > 0.1f ? true : false);
+        anim.SetBool("isWalking", controller.velocity.magnitude > 0.1f ? true : false);*/
+
+        if(controller.velocity.magnitude > 0.1f)
+            CmdAnimCheck(true);
+        else
+            CmdAnimCheck(false);
 
     }
 
