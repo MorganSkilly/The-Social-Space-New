@@ -59,8 +59,14 @@ public class FPSController : NetworkBehaviour
     private Vector3 rotationSmoothVelocity;
     private Vector3 currentRotation;
 
-    [SyncVar(hook = nameof(OnAnimChanged))]
-    public bool animState;
+    [SyncVar(hook = nameof(WalkingAnimation))]
+    public bool walkingState;
+
+    [SyncVar(hook = nameof(RunningAnimation))]
+    public bool runningState;
+    
+/*    [SyncVar(hook = nameof(JumpingAnimation))]
+    public bool jumpingState;*/
 
     private bool jumping;
     private float lastGrounedTime;
@@ -69,12 +75,16 @@ public class FPSController : NetworkBehaviour
 
     private Animator anim;
 
+    [SerializeField]
+    private NetworkAnimator networkAnimator;
+
     void Awake()
     {
         //allow all players to run this
         sceneScript = FindObjectOfType<SceneScript>();
         anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
+        networkAnimator = GetComponent<NetworkAnimator>();
 
     }
 
@@ -119,19 +129,75 @@ public class FPSController : NetworkBehaviour
         Camera.main.transform.SetParent(transform);
         Camera.main.transform.localPosition = new Vector3(0, 0.5f, 0);
 
-        characterModel.SetActive(false);
+        //characterModel.SetActive(false);
     }
 
-    void OnAnimChanged(bool _Old, bool _New)
+    void WalkingAnimation(bool _Old, bool _New)
     {
-        anim.SetBool("isWalking", animState);
+        anim.SetBool("isWalking", walkingState);
+    }
+    void RunningAnimation(bool _Old, bool _New)
+    {
+        anim.SetBool("isRunning", runningState);
+    }
+    void JumpingAnimation()
+    {
+        networkAnimator.SetTrigger("jumping");
     }
 
     [Command]
-    public void CmdAnimCheck(bool state)
+    public void CmdWalkingCheck(bool state)
     {
         //player info sent to server, then server updates sync vars which handles it on all clients
-        animState = state;
+        walkingState = state;
+    }
+    
+    [Command]
+    public void CmdRunningCheck(bool state)
+    {
+        runningState = state;
+    }
+      
+/*    [Command]
+    public void CmdJumpingCheck(bool state)
+    {
+        jumpingState = state;
+    }*/
+
+    private void UpdateMovementAnimation()
+    {
+        /*Vector3 velocity = controller.velocity;
+        Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z; //take forward velocity as it's the one we need
+        anim.SetFloat("Velocity", speed);
+
+        anim.SetBool("isWalking", controller.velocity.magnitude > 0.1f ? true : false);*/
+
+        if (controller.velocity.magnitude > 0.2f)
+        {
+            CmdWalkingCheck(true);
+            //CmdJumpingCheck(false);
+        }
+        else
+            CmdWalkingCheck(false);
+
+        /* else if(jumping)
+ {
+     //CmdRunningCheck(false);
+     //CmdWalkingCheck(false);
+     JumpingAnimation();
+     //CmdJumpingCheck(true);
+ }*/
+
+        /*if (controller.velocity.magnitude > 3.0)
+        {
+            CmdRunningCheck(true);
+            CmdWalkingCheck(false);
+           // CmdJumpingCheck(false);
+        }*/
+
+
+
     }
 
     [ClientRpc]
@@ -169,6 +235,8 @@ public class FPSController : NetworkBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                JumpingAnimation();
+                CmdWalkingCheck(false);
                 float timerSinceGrounded = Time.time - lastGrounedTime;
                 if (controller.isGrounded || (!jumping && timerSinceGrounded < 0.15f))
                 {
@@ -181,21 +249,6 @@ public class FPSController : NetworkBehaviour
         }
     }
 
-    private void UpdateMovementAnimation()
-    {
-        /*Vector3 velocity = controller.velocity;
-        Vector3 localVelocity = controller.transform.InverseTransformDirection(velocity);
-        float speed = localVelocity.z; //take forward velocity as it's the one we need
-        anim.SetFloat("Velocity", speed);
-
-        anim.SetBool("isWalking", controller.velocity.magnitude > 0.1f ? true : false);*/
-
-        if(controller.velocity.magnitude > 0.1f)
-            CmdAnimCheck(true);
-        else
-            CmdAnimCheck(false);
-
-    }
 
     private void MouseInput()
     {
